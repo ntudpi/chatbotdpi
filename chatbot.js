@@ -4,6 +4,8 @@ class State {
     this.choices = choices;
     this.nextStates = nextStates;
   }
+
+  // getters
   get getResponse() {
     return this.response;
   }
@@ -13,6 +15,8 @@ class State {
   get getNextStates() {
     return this.nextStates;
   }
+
+  // setters
   set setChoices(inputChoices) {
     this.choices = inputChoices;
   }
@@ -22,22 +26,19 @@ class State {
   set setResponse(inputResponse) {
     this.response = inputResponse;
   }
-  static getNextState(userChoice) {
-    for(var i=0; i<choices.length; i++)
-      if(choices[i]==answer)
-        return nextStates[i];
-  }
 }
 
-var history = [];
 
 function botResponse() {
+  // bot chat and give choices
   addHistory("bot", curState.getResponse);
   makeChoices(curState.getChoices);
   return;
 }
 
+
 function makeChoices(inp) {
+  // put the choices available to the HTML
   var choiceHTML = "";
   for(var i=0; i<inp.length; i++)
   {
@@ -47,15 +48,20 @@ function makeChoices(inp) {
   return;
 }
 
+
 function userResponse(choiceIndex) {
+  // things to do when user click the appropriate button
   addHistory("user", curState.getChoices[choiceIndex]);
   document.getElementById("choices").innerHTML = "";
   curState = curState.getNextStates[choiceIndex];
   window.setTimeout(botResponse,500);
 }
 
+
+
 function addHistory(role, msg)
 {
+  // add new chat to the history
   var history = document.getElementById("history").innerHTML;
   if(role=="bot")
   {
@@ -70,7 +76,7 @@ function addHistory(role, msg)
   elem.scrollTop = elem.scrollHeight;
 }
 
-var msg="";
+
 const topConv = new State("Hello, we are NTU Libraries! We are here to help answer some of your questions! What would you like to find out about?",['Opening Hours','Booking Spaces', 'Requesting Materials', 'Exam Materials'],[]);
 const openingHours = new State("Choose your time period", ['Vacation', 'Semester Period'], []);
 const vacation = new State("Choose the day", ['Mon-Fri', 'Saturday', 'Sunday & PH'], []);
@@ -87,4 +93,5 @@ openingHours.setNextStates = [vacation, semPeriod];
 vacation.setNextStates = [monFriVac, satVac, sunVac];
 semPeriod.setNextStates = [monFriSem, satSem, sunSem];
 curState = topConv;
+
 botResponse();
