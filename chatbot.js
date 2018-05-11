@@ -66,6 +66,8 @@ function addHistory(role, msg)
     history += '<div class="chat user">' + msg + '</div>';
   }
   document.getElementById("history").innerHTML = history;
+  var elem = document.getElementById("history");
+  elem.scrollTop = elem.scrollHeight;
 }
 
 var msg="";
