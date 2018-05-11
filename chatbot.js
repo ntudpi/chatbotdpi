@@ -41,7 +41,7 @@ function makeChoices(inp) {
   var choiceHTML = "";
   for(var i=0; i<inp.length; i++)
   {
-    choiceHTML += '<button onclick="userResponse('+i+')">' + inp[i] + '</button>';
+    choiceHTML += '<button class="button" onclick="userResponse('+i+')">' + inp[i] + '</button>';
   }
   document.getElementById("choices").innerHTML = choiceHTML;
   return;
