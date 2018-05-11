@@ -31,3 +31,12 @@
 	background-color:#66b3ff;
 	text-align:right;
 }
+.button {
+    background-color: #66b3ff;
+    border: none;
+    color: #ffffff;
+    padding: 1em 2em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
