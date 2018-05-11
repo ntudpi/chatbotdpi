@@ -69,17 +69,20 @@ function addHistory(role, msg)
 }
 
 var msg="";
-const top = new State("Hello, we are NTU Libraries! We are here to help answer some of your questions! What would you like to find out about?",['Opening Hours','Booking Spaces', 'Requesting Materials', 'Exam Materials'],[]);
+const topConv = new State("Hello, we are NTU Libraries! We are here to help answer some of your questions! What would you like to find out about?",['Opening Hours','Booking Spaces', 'Requesting Materials', 'Exam Materials'],[]);
 const openingHours = new State("Choose your time period", ['Vacation', 'Semester Period'], []);
 const vacation = new State("Choose the day", ['Mon-Fri', 'Saturday', 'Sunday & PH'], []);
 const semPeriod = new State("Choose the day", ['Mon-Fri', 'Saturday', 'Sunday & PH'], []);
-const monFriVac = newState('8.30am – 7.00pm', ['Ok'], [top]);
-const satVac = newState('8.30am – 5.00pm', ['Ok'], [top]);
-const sunVac = newState('', ['Ok'], [top]);
-const monFriSem = newState('8.30am – 9.30pm', ['Ok'], [top]);
-const satVac = newState('8.30am – 5.00pm', ['Ok'], [top]);
-const sunVac = newState('Closed', ['Ok'], [top]);
+const monFriVac = new State('8.30am to 7.00pm', ['Ok'], [topConv]);
+const satVac = new State('8.30am to 5.00pm', ['Ok'], [topConv]);
+const sunVac = new State('', ['Ok'], [topConv]);
+const monFriSem = new State('8.30am to 9.30pm', ['Ok'], [topConv]);
+const satSem = new State('8.30am to 5.00pm', ['Ok'], [topConv]);
+const sunSem = new State('Closed', ['Ok'], [topConv]);
 
-s1.setNextStates=[s2,s3];
-curState = top;
+topConv.setNextStates = [openingHours, openingHours, openingHours, openingHours];
+openingHours.setNextStates = [vacation, semPeriod];
+vacation.setNextStates = [monFriVac, satVac, sunVac];
+semPeriod.setNextStates = [monFriSem, satSem, sunSem];
+curState = topConv;
 botResponse();
