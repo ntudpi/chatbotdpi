@@ -68,11 +68,18 @@ function addHistory(role, msg)
   document.getElementById("history").innerHTML = history;
 }
 
-const s1 = new State('Hi',['s2','s3'],[]);
-const s2 = new State('Thanks, S2', ['s1'], []);
-const s3 = new State('Thanks, S3', ['s1'], []);
+var msg="";
+const top = new State("Hello, we are NTU Libraries! We are here to help answer some of your questions! What would you like to find out about?",['Opening Hours','Booking Spaces', 'Requesting Materials', 'Exam Materials'],[]);
+const openingHours = new State("Choose your time period", ['Vacation', 'Semester Period'], []);
+const vacation = new State("Choose the day", ['Mon-Fri', 'Saturday', 'Sunday & PH'], []);
+const semPeriod = new State("Choose the day", ['Mon-Fri', 'Saturday', 'Sunday & PH'], []);
+const monFriVac = newState('8.30am – 7.00pm', ['Ok'], [top]);
+const satVac = newState('8.30am – 5.00pm', ['Ok'], [top]);
+const sunVac = newState('', ['Ok'], [top]);
+const monFriSem = newState('8.30am – 9.30pm', ['Ok'], [top]);
+const satVac = newState('8.30am – 5.00pm', ['Ok'], [top]);
+const sunVac = newState('Closed', ['Ok'], [top]);
+
 s1.setNextStates=[s2,s3];
-s2.setNextStates=[s1];
-s3.setNextStates=[s1];
-curState = s1;
+curState = top;
 botResponse();
