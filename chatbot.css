@@ -26,18 +26,19 @@
 }
 .history {
 	background-color:#d9d9d9;
-	overflow:scroll;
+	overflow:auto;
 	max-height:600px;
 }
 .choices {
 	background-color:#66b3ff;
 	text-align:right;
+	min-height:3em;
 }
 .button {
     background-color: #66b3ff;
     border: none;
     color: #000000;
-    padding: 1em 2em;
+    padding: 0.5em 1em;
     text-align: center;
     text-decoration: none;
     display: inline-block;
