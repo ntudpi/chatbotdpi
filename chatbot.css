@@ -34,9 +34,10 @@
 .button {
     background-color: #66b3ff;
     border: none;
-    color: #ffffff;
+    color: #000000;
     padding: 1em 2em;
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    border-radius:1em;
 }
