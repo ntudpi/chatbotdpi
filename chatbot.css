@@ -1,36 +1,40 @@
 .chat {
 	text-align:right;
 	margin:1em;
-	padding:0.5em;
+	padding:0.7em;
 	border: 2px;
 	border-radius: 1em;
-	max-width:15em;
+	min-width:1em;
+	max-width:30em;
+	overflow:auto;
+	display:inline-block;
 }
-
 .bot {
 	background-color:#ffffff;
 	text-align:left;
+	float:left;
+	clear:both;
 }
 
 .user {
 	background-color:#66b3ff;
 	text-align:right;
-	position:relative;
-	left:17.5em;
 	color:#ffffff;
+	float:right;
+	clear:both;
 }
 
 .mycontainer {
 	float: center;
-	width: 35em;
+	width: 100%;
+	max-width:40em;
 	padding: 1em;
-    margin: 0; 
-    min-height:1em;
+    margin: 0;
 }
 
 .history {
-	background-color:#d9d9d9;
-	overflow:auto;
+	background-color:#e0e0e0;
+	overflow-y:auto;
 	height:600px;
 }
 
