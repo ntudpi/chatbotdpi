@@ -1,4 +1,4 @@
-const topConv= new State('Hello, we are NTU Libraries! We are here to help answer some of your questions! What would you like to find out about?',['Opening Hours','Booking Spaces', 'Library Locations', 'Exam Materials'],[]);
+const topConv= new State('Hello, we are NTU Libraries! We are here to help answer some of your questions! What would you like to find out about?',['Opening Hours','Booking Spaces', 'Library Locations', 'Requesting Materials', 'Exam Materials'],[]);
 const openingHours= new State('Choose your time period',['Vacation', 'Semester Period', 'LWM Extended Hours'],[]);
 const vacation= new State('Choose the day',['Mon-Fri', 'Saturday', 'Sunday & PH'],[]);
 const semPeriod= new State('Choose the day',['Mon-Fri', 'Saturday', 'Sunday & PH'],[]);
@@ -21,7 +21,9 @@ const hssLoc= new State('Here you go! &#9786;<br><br>Humanities &amp; Social Sci
 const lwnLoc= new State('Here you go! &#9786;<br><br>Lee Wee Nam Library<br><b>NS3 &mdash; 03 &mdash; 01</b><br><a href=\'http://maps.ntu.edu.sg/maps#q:lwn%20LIBRARY\' target=\'_blank\'>Locate us<\a><br>Hope you enjoy your experience at NTU Library!',['Ok'],[]);
 const outpostLoc= new State('Here you go! &#9786;<br><br>Library Outpost<br><b>LHS &mdash; 01 &mdash; 03</b><br><a href=\'http://maps.ntu.edu.sg/maps#q:the%20hive\' target=\'_blank\'>Locate us<\a><br>Hope you enjoy your experience at NTU Library!',['Ok'],[]);
 const bookSpaces= new State('Under Construction<br>Sorry',['Ok'],[]);
-topConv.setNextStates = [openingHours, bookSpaces, libLocations, openingHours];
+const reqMat= new State('What would you like to find out about?',['Reserve/Place hold', 'Interlibrary loan', 'Buy new books/journals', 'Closed stacks', 'Research documents delivery', 'Check my Account'],[]);
+const reservePlaceHold= new State('<b>Use OneSearch:</b><br>&mdash; Find the item you require.<br>&mdash; Click \"Find Details or Reserve This Item\".<br>&mdash; Click \"Place Hold\" on the left.<br>&mdash; Login using your username and password.<br>&mdash; Select your Pickup Library and click \"Place Hold\".<br><b>Approach Service Desk for following reservations:</b><br>&mdash; Items that are being catalogued<br>&mdash; Items that consist of multiple volumes (e.g. periodicals or journals)<br><br><b>Reserved items must be collected within 6 days after you receive our email!</b><br><br>Note:<br>Items in the Course Reserves cannot be reserved.<br>You cannot place a request for an item which is currently on loan to you.<br>',['Ok'],[]);
+topConv.setNextStates = [openingHours, bookSpaces, libLocations,reqMat,openingHours];
 openingHours.setNextStates = [vacation, semPeriod, extendedPeriod];
 vacation.setNextStates = [monFriVac, satVac, sunVac];
 semPeriod.setNextStates = [monFriSem, satSem, sunSem];
@@ -44,3 +46,5 @@ hssLoc.setNextStates = [topConv];
 lwnLoc.setNextStates = [topConv];
 outpostLoc.setNextStates = [topConv];
 bookSpaces.setNextStates = [topConv];
+reqMat.setNextStates = [reservePlaceHold,reservePlaceHold,reservePlaceHold,reservePlaceHold,reservePlaceHold,reservePlaceHold];
+reservePlaceHold.setNextStates = [topConv];

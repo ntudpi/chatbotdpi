@@ -5,7 +5,7 @@ topConv,hello world!,"['a', 'b', 'c']","[topConv, test]"
 IMPORTANT:
 SET topConv as your top conversation in the CSV
 Don't use any newline in the CSV
-if you would like to use single quote ('), use \'
+if you would like to use single quote (') in msg, use \'
 """
 import csv
 state = []
