@@ -29,6 +29,9 @@ class State {
 }
 
 
+var chatStack = [];
+
+
 function botResponse() {
   // bot chat and give choices
   addHistory("bot", curState.getResponse);
@@ -44,6 +47,10 @@ function makeChoices(inp) {
   {
     choiceHTML += '<button class="button" onclick="userResponse('+i+')">' + inp[i] + '</button>';
   }
+  if(chatStack.length!==0)
+  {
+    choiceHTML += '<button class="button" onclick=backChat()>Back</button>';
+  }
   document.getElementById("choices").innerHTML = choiceHTML;
   return;
 }
@@ -51,6 +58,7 @@ function makeChoices(inp) {
 
 function userResponse(choiceIndex) {
   // things to do when user click the appropriate button
+  chatStack.push(curState);
   addHistory("user", curState.getChoices[choiceIndex]);
   document.getElementById("choices").innerHTML = "";
   curState = curState.getNextStates[choiceIndex];
@@ -74,4 +82,12 @@ function addHistory(role, msg)
   document.getElementById("history").innerHTML = history;
   var elem = document.getElementById("history");
   elem.scrollTop = elem.scrollHeight;
+}
+
+
+function backChat(){
+  addHistory("user", "Back");
+  document.getElementById("choices").innerHTML = "";
+  curState = chatStack.pop();
+  window.setTimeout(botResponse,500);
 }
