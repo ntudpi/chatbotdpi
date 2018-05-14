@@ -1,13 +1,18 @@
 """
 state,msg,choices,nextStates
 topConv,hello world!,"['a', 'b', 'c']","[topConv, test]"
+
+IMPORTANT:
+SET topConv as your top conversation in the CSV
+Don't use any newline in the CSV
+if you would like to use single quote ('), use \'
 """
 import csv
 state = []
 msg = []
 choices = []
 nextStates = []
-with open('chart.csv', newline='') as csvfile:
+with open('chart2.csv', newline='') as csvfile:
 	reader = csv.DictReader(csvfile)
 	for row in reader:
 		print(row)
@@ -23,4 +28,6 @@ for i in range(len(state)):
 for i in range(len(state)):
 	jscommand += state[i] + ".setNextStates = " + nextStates[i] + ";\n"
 
-print(jscommand)
+text_file = open("output.js", "w")
+text_file.write(jscommand)
+text_file.close()

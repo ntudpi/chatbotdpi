@@ -105,7 +105,7 @@ msg = "\
 Here you go! &#9786;<br><br>\
 Business Library<br>\
 <b>N2 &mdash; B2b &mdash; 07</b><br>\
-<a href='http://maps.ntu.edu.sg/maps#q:BUSINESS%20LIBRARY' target='_blank'>Locate us<\a><br>\
+<a href='http://maps.ntu.edu.sg/maps#q:BUSINESS%20LIBRARY' optarget='_blank'>Locate us<\a><br>\
 Hope you enjoy your experience at NTU Library!";
 choices = ['Ok'];
 const bizlibLoc = new State(msg, choices, [topConv]);
