@@ -1,7 +1,6 @@
 """
-state| msg choices, nextStates
-topConv, hello world!, ['a', 'b', 'c'], [topConv]
-
+state,msg,choices,nextStates
+topConv,hello world!,"['a', 'b', 'c']","[topConv, test]"
 """
 import csv
 state = []
