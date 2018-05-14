@@ -96,9 +96,7 @@ msg = "\
 Here you go! &#9786;<br><br>\
 Art, Design & Media Library<br>\
 <b>ART &mdash; 01 &mdash; 03</b><br>\
-<a href='http://maps.ntu.edu.sg/maps#q:Art%2c%20Design%20&%20Media%20Library%20%28ADM%29' target='_blank'>\
-Locate us\
-<\a><br>\
+<a href='http://maps.ntu.edu.sg/maps#q:Art%2c%20Design%20&%20Media%20Library%20%28ADM%29' target='_blank'>Locate us<\a><br>\
 Hope you enjoy your experience at NTU Library!";
 choices = ['Ok'];
 const admLoc = new State(msg, choices, [topConv]);
@@ -107,9 +105,7 @@ msg = "\
 Here you go! &#9786;<br><br>\
 Business Library<br>\
 <b>N2 &mdash; B2b &mdash; 07</b><br>\
-<a href='http://maps.ntu.edu.sg/maps#q:BUSINESS%20LIBRARY' target='_blank'>\
-Locate us\
-<\a><br>\
+<a href='http://maps.ntu.edu.sg/maps#q:BUSINESS%20LIBRARY' target='_blank'>Locate us<\a><br>\
 Hope you enjoy your experience at NTU Library!";
 choices = ['Ok'];
 const bizlibLoc = new State(msg, choices, [topConv]);
@@ -118,9 +114,7 @@ msg = "\
 Here you go! &#9786;<br><br>\
 Chinese Library<br>\
 <b>S3.2 &mdash; B5 &mdash; 01</b><br>\
-<a href='http://maps.ntu.edu.sg/maps#q:Chinese%20Library' target='_blank'>\
-Locate us\
-<\a><br>\
+<a href='http://maps.ntu.edu.sg/maps#q:Chinese%20Library' target='_blank'>Locate us<\a><br>\
 Hope you enjoy your experience at NTU Library!";
 choices = ['Ok'];
 const chilibLoc = new State(msg, choices, [topConv]);
@@ -129,9 +123,7 @@ msg = "\
 Here you go! &#9786;<br><br>\
 Communication &amp; Information Library<br>\
 <b>CS &mdash 01 &mdash; 18</b><br>\
-<a href='http://maps.ntu.edu.sg/maps#q:CMIL' target='_blank'>\
-Locate us\
-<\a><br>\
+<a href='http://maps.ntu.edu.sg/maps#q:CMIL' target='_blank'>Locate us<\a><br>\
 Hope you enjoy your experience at NTU Library!";
 choices = ['Ok'];
 const comLoc = new State(msg, choices, [topConv]);
@@ -140,9 +132,7 @@ msg = "\
 Here you go! &#9786;<br><br>\
 Humanities &amp; Social Sciences Library<br>\
 <b>S4 &mdash; B3c</b><br>\
-<a href='http://maps.ntu.edu.sg/maps#q:hss%20LIBRARY' target='_blank'>\
-Locate us\
-<\a><br>\
+<a href='http://maps.ntu.edu.sg/maps#q:hss%20LIBRARY' target='_blank'>Locate us<\a><br>\
 Hope you enjoy your experience at NTU Library!";
 choices = ['Ok'];
 const hssLoc = new State(msg, choices, [topConv]);
@@ -151,9 +141,7 @@ msg = "\
 Here you go! &#9786;<br><br>\
 Lee Wee Nam Library<br>\
 <b>NS3 &mdash; 03 &mdash; 01</b><br>\
-<a href='http://maps.ntu.edu.sg/maps#q:lwn%20LIBRARY' target='_blank'>\
-Locate us\
-<\a><br>\
+<a href='http://maps.ntu.edu.sg/maps#q:lwn%20LIBRARY' target='_blank'>Locate us<\a><br>\
 Hope you enjoy your experience at NTU Library!";
 choices = ['Ok'];
 const lwnLoc = new State(msg, choices, [topConv]);
@@ -162,9 +150,7 @@ msg = "\
 Here you go! &#9786;<br><br>\
 Library Outpost<br>\
 <b>LHS &mdash; 01 &mdash; 03</b><br>\
-<a href='http://maps.ntu.edu.sg/maps#q:the%20hive' target='_blank'>\
-Locate us\
-<\a><br>\
+<a href='http://maps.ntu.edu.sg/maps#q:the%20hive' target='_blank'>Locate us\<\a><br>\
 Hope you enjoy your experience at NTU Library!";
 choices = ['Ok'];
 const outpostLoc = new State(msg, choices, [topConv]);
