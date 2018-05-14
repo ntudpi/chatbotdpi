@@ -75,23 +75,3 @@ function addHistory(role, msg)
   var elem = document.getElementById("history");
   elem.scrollTop = elem.scrollHeight;
 }
-
-
-const topConv = new State("Hello, we are NTU Libraries! We are here to help answer some of your questions! What would you like to find out about?",['Opening Hours','Booking Spaces', 'Requesting Materials', 'Exam Materials'],[]);
-const openingHours = new State("Choose your time period", ['Vacation', 'Semester Period'], []);
-const vacation = new State("Choose the day", ['Mon-Fri', 'Saturday', 'Sunday & PH'], []);
-const semPeriod = new State("Choose the day", ['Mon-Fri', 'Saturday', 'Sunday & PH'], []);
-const monFriVac = new State('8.30am to 7.00pm', ['Ok'], [topConv]);
-const satVac = new State('8.30am to 5.00pm', ['Ok'], [topConv]);
-const sunVac = new State('Closed', ['Ok'], [topConv]);
-const monFriSem = new State('8.30am to 9.30pm', ['Ok'], [topConv]);
-const satSem = new State('8.30am to 5.00pm', ['Ok'], [topConv]);
-const sunSem = new State('Closed', ['Ok'], [topConv]);
-
-topConv.setNextStates = [openingHours, openingHours, openingHours, openingHours];
-openingHours.setNextStates = [vacation, semPeriod];
-vacation.setNextStates = [monFriVac, satVac, sunVac];
-semPeriod.setNextStates = [monFriSem, satSem, sunSem];
-curState = topConv;
-
-botResponse();
