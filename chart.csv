@@ -1,0 +1,2 @@
+state,msg,choices,nextStates
+topConv,hello world! Hahaha,"['a','b','c']","[topConv, him]"
