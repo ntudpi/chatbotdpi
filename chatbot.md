@@ -265,9 +265,10 @@ For some reason, data encoding from excel might not be compatible to thus decode
 </script>
 ```
 Here we integrates all component of the chat bot, including two additional lines of JS to set the current state to be `topConv` and call the initial function `botResponse`.
- ### `chatbot.css`
- Chatbot.css just do necessary styling. The code is self-explanatory.
- ``` css
+### `chatbot.css`
+ 
+Chatbot.css just do necessary styling. The code is self-explanatory.
+``` css
  .chat {
         text-align:right;
         margin:1em;
