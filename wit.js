@@ -1,4 +1,4 @@
-function getResponse (textInput, curState, callback) {
+function getResponse (textInput, callback) {
   $.ajax({
     url: 'https://api.wit.ai/message',
     data: {
@@ -8,7 +8,7 @@ function getResponse (textInput, curState, callback) {
     dataType: 'jsonp',
     method: 'GET',
     success:function(response) {
-              callback(response.entities, curState);
+              callback(response.entities);
             }
   });
 }
@@ -19,19 +19,13 @@ function doResponse(entities) {
   var score = Array(choiceLen);
   for(var i=0; i<choiceLen; i++) score[i]=0;
 
-  console.log(choiceLen);
-
   for(var i=0; i<choiceLen; i++)
   {
-    console.log(entities);
-    console.log(curState);
-    console.log(curState.getNextStrings[i]);
     if(typeof entities[curState.getNextStrings[i]] != "undefined")
     {
       score[i] += entities[curState.getNextStrings[i]][0]['confidence'];
     }
   }
-  console.log(score);
 
   var maxVal=0.2;
   var maxInd=-1;
@@ -55,4 +49,16 @@ function doResponse(entities) {
 textInput = "semester period";
 curState=openingHours;
 
-getResponse(textInput, curState, doResponse);
+
+
+$(document).on('keypress', function(event) {
+  // When the user hits the enter key trigger.
+  if (event.which === 13) {
+    var textInput = document.getElementById("answer").value;
+    if (textInput !== '') {
+      addHistory("user", textInput);
+      document.getElementById("answer").value = '';
+      getResponse(textInput, doResponse);
+    }
+  }
+});
