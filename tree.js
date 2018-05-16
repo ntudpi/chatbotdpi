@@ -17,20 +17,20 @@ class Node {
   }
 
   // setters
-  set setMsgs(inpmsgs) {
+  set msgs(inpmsgs) {
     this.msgs = inpmsgs;
   }
-  set setEndState(inpendState) {
+  set endState(inpendState) {
     this.endState = inpendState;
   }
-  set setSpecificness(inpspecificness) {
+  set specificness(inpspecificness) {
     this.specificness = inpspecificness;
   }
 }
 
 
-function dfs(node){
-  node.msgs.push(node.endState.choices);
+function dfs(node, nodes){
+  node.msgs = push(node.endState.choices);
   node.specificness = node.specificness+1;
   for(var i=0; i<node.endState.nextStates; i++)
   {
@@ -41,8 +41,11 @@ function dfs(node){
       dfs(newNode);
     }
   }
-  return node;
+  nodes.push(node);
 }
 
-
+rootNode = new Node([],topConv,0)
 curState = topConv;
+nodes = [];
+dfs(rootNode, nodes);
+console.log(nodes);

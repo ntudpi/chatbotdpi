@@ -13,21 +13,22 @@ function getResponse (textInput, curState, callback) {
   });
 }
 
-function doResponse(entities, curState) {
+function doResponse(entities) {
   var choiceLen = curState.getChoices.length;
 
   var score = Array(choiceLen);
   for(var i=0; i<choiceLen; i++) score[i]=0;
 
   console.log(choiceLen);
-  console.log(entities);
-  
+
   for(var i=0; i<choiceLen; i++)
   {
-    console.log(curState.getChoices[i]);
-    if(typeof entities[curState.getChoices[i]] != "undefined")
+    console.log(entities);
+    console.log(curState);
+    console.log(curState.getNextStrings[i]);
+    if(typeof entities[curState.getNextStrings[i]] != "undefined")
     {
-      score[i] += entities[curState.getChoices[i]]['confidence'];
+      score[i] += entities[curState.getNextStrings[i]][0]['confidence'];
     }
   }
   console.log(score);
@@ -51,7 +52,7 @@ function doResponse(entities, curState) {
   doResponse(entities, curState);
 }
 
-textInput = "Library open";
-curState=topConv;
+textInput = "semester period";
+curState=openingHours;
 
 getResponse(textInput, curState, doResponse);

@@ -1,8 +1,9 @@
 class State {
-  constructor(response, choices, nextStates){
+  constructor(response, choices, nextStates, nextStrings){
     this.response = response;
     this.choices = choices;
     this.nextStates = nextStates;
+    this.nextStrings = nextStrings;
   }
 
   // getters
@@ -15,6 +16,9 @@ class State {
   get getNextStates() {
     return this.nextStates;
   }
+  get getNextStrings() {
+    return this.nextStrings;
+  }
 
   // setters
   set setChoices(inputChoices) {
@@ -26,6 +30,9 @@ class State {
   set setResponse(inputResponse) {
     this.response = inputResponse;
   }
+  set setNextStrings(inputNextStrings) {
+    this.nextStrings = inputNextStrings;
+  }
 }
 
 
@@ -33,6 +40,7 @@ var chatStack = [];
 
 
 function botResponse() {
+  console.log(curState);
   // bot chat and give choices
   addHistory("bot", curState.getResponse);
   if(curState===topConv)
