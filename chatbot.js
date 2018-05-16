@@ -40,7 +40,6 @@ var chatStack = [];
 
 
 function botResponse() {
-  console.log(curState);
   // bot chat and give choices
   addHistory("bot", curState.getResponse);
   if(curState===topConv)
