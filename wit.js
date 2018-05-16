@@ -19,6 +19,8 @@ function doResponse(entities) {
   var score = Array(choiceLen);
   for(var i=0; i<choiceLen; i++) score[i]=0;
 
+  console.log(entities);
+  console.log(curState.getNextStrings);
   for(var i=0; i<choiceLen; i++)
   {
     if(typeof entities[curState.getNextStrings[i]] != "undefined")
@@ -26,7 +28,7 @@ function doResponse(entities) {
       score[i] += entities[curState.getNextStrings[i]][0]['confidence'];
     }
   }
-
+  console.log(score);
   var maxVal=0.2;
   var maxInd=-1;
   for(var i=0; i<choiceLen; i++)
@@ -47,7 +49,7 @@ function doResponse(entities) {
 }
 
 textInput = "semester period";
-curState=openingHours;
+curState=topConv;
 
 
 
@@ -58,6 +60,7 @@ $(document).on('keypress', function(event) {
     if (textInput !== '') {
       addHistory("user", textInput);
       document.getElementById("answer").value = '';
+      chatStack.push(curState);
       getResponse(textInput, doResponse);
     }
   }
