@@ -54,3 +54,11 @@
     display: inline-block;
     border-radius:1em;
 }
+
+.inputField {
+	width:100%;
+	min-height:2em;
+	text-align:center;
+	font-size:120%;
+	float:center;
+}
