@@ -1,12 +1,3 @@
-"""
-state,msg,choices,nextStates
-topConv,hello world!,"['a', 'b', 'c']","[topConv, test]"
-
-IMPORTANT:
-SET topConv as your top conversation in the CSV
-Don't use any newline in the CSV
-if you would like to use single quote (') in msg, use \'
-"""
 import csv
 state = []
 msg = []
@@ -18,7 +9,7 @@ directs = []
 with open('chart2.csv', newline='') as csvfile:
 	reader = csv.DictReader(csvfile)
 	for row in reader:
-		print(row)
+		# append the cell to appropriate lists
 		state.append(row['state'])
 		msg.append(row['msg'])
 		choices.append(row['choices'])
@@ -26,16 +17,18 @@ with open('chart2.csv', newline='') as csvfile:
 		nextStrings.append(row['nextStrings'])
 		directs.append(row['directAccess'])
 
-jscommand=""
-for i in range(len(state)):
-	jscommand += "const "+state[i]+"= new State('"+msg[i]+"',"+choices[i]+","+"[],"+nextStrings[i]+");\n"
+jscommand="" # store the string of command
 
-for i in range(len(state)):
+for i in range(len(state)): # constructing the objects
+	jscommand += "const "+state[i]+" = new State('"+msg[i]+"',"+choices[i]+","+"[],"+nextStrings[i]+");\n"
+
+for i in range(len(state)): # linking the next states
 	jscommand += state[i] + ".setNextStates = " + nextStates[i] + ";\n"
 
-jscommand += "directAccessStates = [];\n";
+jscommand += "var  directAccessStates = [];\n"; # initialize empty array
+
 for i in range(len(state)):
-	if(directs[i]!="null"):
+	if(directs[i]!="null"): # append the [state, keyword] list pair
 		jscommand += "directAccessStates.push([" + state[i] + ",'" + directs[i] + "']);\n"
 
 text_file = open("output.js", "w")
