@@ -1,5 +1,4 @@
 function getResponse (textInput, callback) {
-  $.noConflict();
   jQuery( document ).ready(function( $ ) {
     $.ajax({
       url: 'https://api.wit.ai/message',
@@ -98,7 +97,6 @@ textInput = "semester period";
 curState=topConv;
 
 
-$.noConflict();
 jQuery( document ).ready(function( $ ) {
   $(document).on('keypress', function(event) {
     // When the user hits the enter key trigger.
