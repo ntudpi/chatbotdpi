@@ -1,4 +1,6 @@
 class State {
+  // the class that stores the story in chatbot
+
   constructor(response, choices, nextStates, nextStrings, directAccess){
     this.response = response;
     this.choices = choices;
@@ -42,70 +44,90 @@ class State {
   }
 }
 
-
+// store the chat history to allow user to go 'back'
 var chatStack = [];
 
 
 function botResponse() {
-  // bot chat and give choices
-  addHistory("bot", curState.getResponse);
-  if(curState===topConv)
+  // put the bot response in history and create the choices in current state
+
+  addHistory("bot", curState.getResponse); //put to history
+
+  if(curState===topConv) //if it's top of conversation, then clear the history
   {
     chatStack = [];
   }
-  makeChoices(curState.getChoices);
+
+  makeChoices(curState.getChoices); // put the choices button
+
   return;
 }
 
 
 function makeChoices(inp) {
   // put the choices available to the HTML
+  
   var choiceHTML = "";
-  for(var i=0; i<inp.length; i++)
+
+  for(var i=0; i<inp.length; i++) // inp is the array of choices strings
   {
     choiceHTML += '<button class="button" onclick="userResponse('+i+')">' + inp[i] + '</button>';
   }
-  if(chatStack.length!==0)
+  
+  if(chatStack.length!==0) // if the history is not empty, then allow going back
   {
     choiceHTML += '<button class="button" onclick=backChat()>Back</button>';
   }
-  document.getElementById("choices").innerHTML = choiceHTML;
+
+  document.getElementById("choices").innerHTML = choiceHTML; // put the buttons into the div
+  
   return;
 }
 
 
 function userResponse(choiceIndex) {
   // things to do when user click the appropriate button
-  chatStack.push(curState);
-  addHistory("user", curState.getChoices[choiceIndex]);
-  document.getElementById("choices").innerHTML = "";
-  curState = curState.getNextStates[choiceIndex];
-  window.setTimeout(botResponse,500);
+
+  addHistory("user", curState.getChoices[choiceIndex]); // put user response to the history
+  document.getElementById("choices").innerHTML = ""; // clear the buttons
+
+  chatStack.push(curState); // add the previous state into the history before changing
+  curState = curState.getNextStates[choiceIndex]; // get to the next state
+
+  window.setTimeout(botResponse,500); // wait for a while, for better UX
 }
 
 
 
-function addHistory(role, msg)
-{
+function addHistory(role, msg) {
   // add new chat to the history
-  var history = document.getElementById("history").innerHTML;
+
+  var history = document.getElementById("history").innerHTML; // get the current history content
+
   if(role=="bot")
   {
-    history += '<div class="chat bot">' + msg + '</div>';
+    history += '<div class="chat bot">' + msg + '</div>'; // append the html
   }
-  else
+  else // role == "user"
   {
-    history += '<div class="chat user">' + msg + '</div>';
+    history += '<div class="chat user">' + msg + '</div>'; // append the html
   }
-  document.getElementById("history").innerHTML = history;
+
+  document.getElementById("history").innerHTML = history; // put back the appended html
+
   var elem = document.getElementById("history");
-  elem.scrollTop = elem.scrollHeight;
+  elem.scrollTop = elem.scrollHeight; // auto scroll the chat window down
 }
 
 
 function backChat(){
-  addHistory("user", "Back");
-  document.getElementById("choices").innerHTML = "";
-  curState = chatStack.pop();
-  window.setTimeout(botResponse,500);
+  // when user clicked back
+
+  addHistory("user", "Back"); // put 'back' to the history
+
+  document.getElementById("choices").innerHTML = ""; // clear the buttons
+
+  curState = chatStack.pop(); // get and remove the latest state
+  
+  window.setTimeout(botResponse,500); // wait a while for UX
 }
