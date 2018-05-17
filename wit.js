@@ -1,15 +1,18 @@
 function getResponse (textInput, callback) {
-  $.ajax({
-    url: 'https://api.wit.ai/message',
-    data: {
-      'q': textInput,
-      'access_token' : '67453HLLYIEHMNZPGKIVK6TOLP3GPGF4'
-    },
-    dataType: 'jsonp',
-    method: 'GET',
-    success:function(response) {
-              callback(response.entities, 0, curState);
-            }
+  $.noConflict();
+  jQuery( document ).ready(function( $ ) {
+    $.ajax({
+      url: 'https://api.wit.ai/message',
+      data: {
+        'q': textInput,
+        'access_token' : '67453HLLYIEHMNZPGKIVK6TOLP3GPGF4'
+      },
+      dataType: 'jsonp',
+      method: 'GET',
+      success:function(response) {
+                callback(response.entities, 0, curState);
+              }
+    });
   });
 }
 
@@ -95,15 +98,17 @@ textInput = "semester period";
 curState=topConv;
 
 
-
-$(document).on('keypress', function(event) {
-  // When the user hits the enter key trigger.
-  if (event.which === 13) {
-    var textInput = document.getElementById("answer").value;
-    if (textInput !== '') {
-      addHistory("user", textInput);
-      document.getElementById("answer").value = '';
-      getResponse(textInput, doResponse);
+$.noConflict();
+jQuery( document ).ready(function( $ ) {
+  $(document).on('keypress', function(event) {
+    // When the user hits the enter key trigger.
+    if (event.which === 13) {
+      var textInput = document.getElementById("answer").value;
+      if (textInput !== '') {
+        addHistory("user", textInput);
+        document.getElementById("answer").value = '';
+        getResponse(textInput, doResponse);
+      }
     }
-  }
+  });
 });
