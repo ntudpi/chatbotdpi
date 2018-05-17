@@ -1,9 +1,12 @@
 state,msg,choices,nextStates,nextStrings
 topConv,"Hello, we are NTU Libraries! <br>We are here to help answer some of your questions! <br>What would you like to find out about?","['Opening Hours','Booking Spaces', 'Library Locations', 'Requesting Materials', 'Exam Materials']","[openingHours, bookSpaces, libLocations,reqMat,examPapers]","['opening_hours', 'booking_spaces', 'library_locations','requesting_materials','exam_materials']"
-openingHours,Choose your time period:,"['Vacation', 'Semester Period', 'LWN Extended Hours']","[vacation, semPeriod, extendedPeriod]","['vacation', 'semester_period', 'extended_period']"
+openingHours,Choose your time period:,"['Vacation', 'Semester Period', 'LWN Extended Hours']","[vacation, semPeriod, extendedPeriod, mon, sat, sun]","['vacation', 'semester_period', 'extended_period', 'mon_to_fri', 'saturday', 'sunday_ph']"
 vacation,Choose the day:,"['Mon-Fri', 'Saturday', 'Sunday & PH']","[monFriVac, satVac, sunVac]","['mon_to_fri', 'saturday', 'sunday_ph']"
 semPeriod,Choose the day:,"['Mon-Fri', 'Saturday', 'Sunday & PH']","[monFriSem, satSem, sunSem]","['mon_to_fri', 'saturday', 'sunday_ph']"
 extendedPeriod,Choose the day:,"['Mon-Fri', 'Saturday', 'Sunday & PH']","[monFriExt, satExt, sunExt]","['mon_to_fri', 'saturday', 'sunday_ph']"
+mon,Choose your time period:,"['Vacation', 'Semester Period', 'LWN Extended Hours']","[monFriVac, monFriSem, monFriExt]","['vacation', 'semester_period', 'extended_period']"
+sat,Choose your time period:,"['Vacation', 'Semester Period', 'LWN Extended Hours']","[satVac, satSem, satExt]","['vacation', 'semester_period', 'extended_period']"
+sun,Choose your time period:,"['Vacation', 'Semester Period', 'LWN Extended Hours']","[sunVac, sunSem, sunExt]","['vacation', 'semester_period', 'extended_period']"
 monFriVac,"Here you go! The opening hours are:<br><br><b>8.30am &mdash; 7.00pm</b><br>Close at 5.00pm:<br>- Art, Design & Media Library<br>- Communication & Information Library<br>- Wang Gungwu Library<br>",['Ok'],[topConv],['ok']
 satVac,"Here you go! The opening hours are:<br><br><b>8.30am &mdash; 5.00pm</b><br>Closed:<br>- Art, Design & Media Library<br>- Communication & Information Library<br>- Wang Gungwu Library<br>",['Ok'],[topConv],['ok']
 sunVac,"Sorry &#9785;,<br>Libraries are <b>closed</b> on Sundays and Public Holidays!",['Ok'],[topConv],['ok']

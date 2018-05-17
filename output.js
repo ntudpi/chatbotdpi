@@ -1,8 +1,11 @@
 const topConv= new State('Hello, we are NTU Libraries! <br>We are here to help answer some of your questions! <br>What would you like to find out about?',['Opening Hours','Booking Spaces', 'Library Locations', 'Requesting Materials', 'Exam Materials'],[],['opening_hours', 'booking_spaces', 'library_locations','requesting_materials','exam_materials']);
-const openingHours= new State('Choose your time period:',['Vacation', 'Semester Period', 'LWN Extended Hours'],[],['vacation', 'semester_period', 'extended_period']);
+const openingHours= new State('Choose your time period:',['Vacation', 'Semester Period', 'LWN Extended Hours'],[],['vacation', 'semester_period', 'extended_period', 'mon_to_fri', 'saturday', 'sunday_ph']);
 const vacation= new State('Choose the day:',['Mon-Fri', 'Saturday', 'Sunday & PH'],[],['mon_to_fri', 'saturday', 'sunday_ph']);
 const semPeriod= new State('Choose the day:',['Mon-Fri', 'Saturday', 'Sunday & PH'],[],['mon_to_fri', 'saturday', 'sunday_ph']);
 const extendedPeriod= new State('Choose the day:',['Mon-Fri', 'Saturday', 'Sunday & PH'],[],['mon_to_fri', 'saturday', 'sunday_ph']);
+const mon= new State('Choose your time period:',['Vacation', 'Semester Period', 'LWN Extended Hours'],[],['vacation', 'semester_period', 'extended_period']);
+const sat= new State('Choose your time period:',['Vacation', 'Semester Period', 'LWN Extended Hours'],[],['vacation', 'semester_period', 'extended_period']);
+const sun= new State('Choose your time period:',['Vacation', 'Semester Period', 'LWN Extended Hours'],[],['vacation', 'semester_period', 'extended_period']);
 const monFriVac= new State('Here you go! The opening hours are:<br><br><b>8.30am &mdash; 7.00pm</b><br>Close at 5.00pm:<br>- Art, Design & Media Library<br>- Communication & Information Library<br>- Wang Gungwu Library<br>',['Ok'],[],['ok']);
 const satVac= new State('Here you go! The opening hours are:<br><br><b>8.30am &mdash; 5.00pm</b><br>Closed:<br>- Art, Design & Media Library<br>- Communication & Information Library<br>- Wang Gungwu Library<br>',['Ok'],[],['ok']);
 const sunVac= new State('Sorry &#9785;,<br>Libraries are <b>closed</b> on Sundays and Public Holidays!',['Ok'],[],['ok']);
@@ -35,10 +38,13 @@ const checkMyAccount= new State('To view your loans & holds, renew your items an
 const queryOverdue= new State('<b>Overdue loans: </b>Login > Fines<br><br>- Fines are calculated from due date of item excluding Sundays and Public Holidays.<br>- Fines for items in the Course Reserves are charged by the hour.<br>- Borrowing privileges are stopped when outstanding fines max $10.00.<br>- Payment of fines via CashCard, EZ-Link card, NETS or Cheque. <br><br>More information at <a target=\'_blank\' href=\'http://www.ntu.edu.sg/Library/Pages/access/overdue.aspx\'>here</a>',['Ok'],[],['ok']);
 const examPapers= new State('Alumni library members have no access to past year exam papers. <br><br><b>Past-year examination papers available</b> at <a target=\'_blank\' href=\'https://ts.ntu.edu.sg/sites/lib-repository/exam-question-papers\'>here</a>.<br>Up to 5 years of exam papers (3 years only for Nanyang Business School)<br>Some courses have multiple codes, identify the main course code.<br><br>Schools may not want certain papers to be made available on web. As such, there will be an *asterisk next to the course code.<br>Send an email to Librarians if you cannot find your exam papers.',['Ok'],[],['ok']);
 topConv.setNextStates = [openingHours, bookSpaces, libLocations,reqMat,examPapers];
-openingHours.setNextStates = [vacation, semPeriod, extendedPeriod];
+openingHours.setNextStates = [vacation, semPeriod, extendedPeriod, mon, sat, sun];
 vacation.setNextStates = [monFriVac, satVac, sunVac];
 semPeriod.setNextStates = [monFriSem, satSem, sunSem];
 extendedPeriod.setNextStates = [monFriExt, satExt, sunExt];
+mon.setNextStates = [monFriVac, monFriSem, monFriExt];
+sat.setNextStates = [satVac, satSem, satExt];
+sun.setNextStates = [sunVac, sunSem, sunExt];
 monFriVac.setNextStates = [topConv];
 satVac.setNextStates = [topConv];
 sunVac.setNextStates = [topConv];
