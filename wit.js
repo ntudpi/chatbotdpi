@@ -20,8 +20,6 @@ function doResponse(entities, numCall, initialState) {
   for(var i=0; i<choiceLen; i++) score[i]=0;
 
   console.log(entities);
-  console.log(curState.getNextStrings);
-
   
   for(var i=0; i<choiceLen; i++)
   {
@@ -30,7 +28,6 @@ function doResponse(entities, numCall, initialState) {
       score[i] += entities[curState.getNextStrings[i]][0]['confidence'];
     }
   }
-  console.log(score);
 
   var maxVal=0.2;
   var maxInd=-1;
@@ -54,6 +51,29 @@ function doResponse(entities, numCall, initialState) {
       return;
     }
   }
+
+  // direct access implementation
+  var bestIndDirect=-1;
+  var bestValDirect=0.5;
+  for(var i=0; i<directAccessStates.length; i++)
+  {
+    if(typeof entities[directAccessStates[i][1]] != "undefined")
+    {
+      if(entities[directAccessStates[i][1]][0]['confidence']>bestValDirect)
+      {
+        bestIndDirect = i;
+        bestValDirect = entities[directAccessStates[i][1]][0]['confidence'];
+      }
+    }
+  }
+  if(bestIndDirect!=-1)
+  {
+    chatStack.push(initialState);
+    curState = directAccessStates[bestIndDirect][0];
+    botResponse();
+    return;
+  }
+  // end of direct access implementation
 
   if(maxInd == -1 && numCall!=0)
   {

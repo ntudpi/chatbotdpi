@@ -1,9 +1,10 @@
 class State {
-  constructor(response, choices, nextStates, nextStrings){
+  constructor(response, choices, nextStates, nextStrings, directAccess){
     this.response = response;
     this.choices = choices;
     this.nextStates = nextStates;
     this.nextStrings = nextStrings;
+    this.directAccess = directAccess;
   }
 
   // getters
@@ -19,6 +20,9 @@ class State {
   get getNextStrings() {
     return this.nextStrings;
   }
+  get getDirectAccess() {
+    return this.directAccess;
+  }
 
   // setters
   set setChoices(inputChoices) {
@@ -32,6 +36,9 @@ class State {
   }
   set setNextStrings(inputNextStrings) {
     this.nextStrings = inputNextStrings;
+  }
+  set getDirectAccess(inputDirectAccess) {
+    this.directAccess = inputDirectAccess;
   }
 }
 
