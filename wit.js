@@ -8,19 +8,21 @@ function getResponse (textInput, callback) {
     dataType: 'jsonp',
     method: 'GET',
     success:function(response) {
-              callback(response.entities, 0);
+              callback(response.entities, 0, curState);
             }
   });
 }
 
-function doResponse(entities, numCall) {
-  var choiceLen = curState.getChoices.length;
+function doResponse(entities, numCall, initialState) {
+  var choiceLen = curState.getNextStates.length;
 
   var score = Array(choiceLen);
   for(var i=0; i<choiceLen; i++) score[i]=0;
 
   console.log(entities);
   console.log(curState.getNextStrings);
+
+  
   for(var i=0; i<choiceLen; i++)
   {
     if(typeof entities[curState.getNextStrings[i]] != "undefined")
@@ -40,8 +42,22 @@ function doResponse(entities, numCall) {
       maxInd = i;
     }
   }
+
+  if(typeof entities['back'] != "undefined")
+  {
+    if(entities['back'][0]['confidence']>maxVal)
+    {
+      // backChat
+      document.getElementById("choices").innerHTML = "";
+      curState = chatStack.pop();
+      window.setTimeout(botResponse,500);
+      return;
+    }
+  }
+
   if(maxInd == -1 && numCall!=0)
   {
+    chatStack.push(initialState);
     botResponse();
     return;
   }
@@ -52,7 +68,7 @@ function doResponse(entities, numCall) {
     return;
   }
   curState = curState.getNextStates[maxInd];
-  doResponse(entities, numCall+1);
+  doResponse(entities, numCall+1, initialState);
 }
 
 textInput = "semester period";
@@ -67,7 +83,6 @@ $(document).on('keypress', function(event) {
     if (textInput !== '') {
       addHistory("user", textInput);
       document.getElementById("answer").value = '';
-      chatStack.push(curState);
       getResponse(textInput, doResponse);
     }
   }
