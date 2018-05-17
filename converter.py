@@ -13,6 +13,8 @@ msg = []
 choices = []
 nextStates = []
 nextStrings = []
+directs = []
+
 with open('chart2.csv', newline='') as csvfile:
 	reader = csv.DictReader(csvfile)
 	for row in reader:
@@ -22,6 +24,7 @@ with open('chart2.csv', newline='') as csvfile:
 		choices.append(row['choices'])
 		nextStates.append(row['nextStates'])
 		nextStrings.append(row['nextStrings'])
+		directs.append(row['directAccess'])
 
 jscommand=""
 for i in range(len(state)):
@@ -29,6 +32,11 @@ for i in range(len(state)):
 
 for i in range(len(state)):
 	jscommand += state[i] + ".setNextStates = " + nextStates[i] + ";\n"
+
+jscommand += "directAccessStates = [];\n";
+for i in range(len(state)):
+	if(directs[i]!="null"):
+		jscommand += "directAccessStates.push([" + state[i] + ",'" + directs[i] + "']);\n"
 
 text_file = open("output.js", "w")
 text_file.write(jscommand)
