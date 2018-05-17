@@ -10,7 +10,8 @@ botResponse();
 </script>
 <script src="https://rawgit.com/ntudpi/chatbotdpi/master/wit.js"></script>
 <div id="readme">
-	# NTU DPI ChatBot Documentation
+
+# NTU DPI ChatBot Documentation
 
 
 ## Requirements
