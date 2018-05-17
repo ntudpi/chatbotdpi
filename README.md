@@ -1,18 +1,4 @@
- <link rel="stylesheet" type="text/css" href="https://rawgit.com/ntudpi/chatbotdpi/master/chatbot.css">
-<div class="mycontainer history" id="history"></div>
-<div class="mycontainer choices" id="choices"></div>
-<input class="inputField" type="text" id="answer" placeholder="Enter your response" required/>
-<script src="https://rawgit.com/ntudpi/chatbotdpi/master/chatbot.js"></script>
-<script src="https://rawgit.com/ntudpi/chatbotdpi/master/output.js"></script>
-<script>
-curState = topConv;
-botResponse();
-</script>
-<script src="https://rawgit.com/ntudpi/chatbotdpi/master/wit.js"></script>
-<div id="readme" style="display:none">
-
 # NTU DPI ChatBot Documentation
-
 
 ## Requirements
 No library required
@@ -344,4 +330,3 @@ Chatbot.css just do necessary styling. The code is self-explanatory.
     border-radius:1em;
 }
 ```
-</div>
