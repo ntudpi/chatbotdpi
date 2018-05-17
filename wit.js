@@ -8,12 +8,12 @@ function getResponse (textInput, callback) {
     dataType: 'jsonp',
     method: 'GET',
     success:function(response) {
-              callback(response.entities);
+              callback(response.entities, 0);
             }
   });
 }
 
-function doResponse(entities) {
+function doResponse(entities, numCall) {
   var choiceLen = curState.getChoices.length;
 
   var score = Array(choiceLen);
@@ -29,6 +29,7 @@ function doResponse(entities) {
     }
   }
   console.log(score);
+
   var maxVal=0.2;
   var maxInd=-1;
   for(var i=0; i<choiceLen; i++)
@@ -39,13 +40,19 @@ function doResponse(entities) {
       maxInd = i;
     }
   }
-  if(maxInd == -1)
+  if(maxInd == -1 && numCall!=0)
   {
     botResponse();
     return;
   }
+  if(maxInd == -1 && numCall==0)
+  {
+    var sorry = "Sorry I can't understand you &#9785;<br>Can you please restate your input in different way?"
+    addHistory("bot", sorry);
+    return;
+  }
   curState = curState.getNextStates[maxInd];
-  doResponse(entities, curState);
+  doResponse(entities, numCall+1);
 }
 
 textInput = "semester period";
