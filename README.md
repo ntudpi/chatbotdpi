@@ -9,7 +9,7 @@ curState = topConv;
 botResponse();
 </script>
 <script src="https://rawgit.com/ntudpi/chatbotdpi/master/wit.js"></script>
-<div id="readme">
+<div id="readme" style="display:none">
 
 # NTU DPI ChatBot Documentation
 
