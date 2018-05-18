@@ -112,10 +112,30 @@ If this chatbot is continued to be developed, there are some things that possibl
 ### Less possible
 - Faster training. It's the base problem of using machine learning in NLP, we need a lot of data to train it well.
 - Scalability. Given the same fundamental way of creating the bot. There is small hope that we can grow the bot to handle lots of things
-- Context analysis to solve keyword overlapping. It's complicated.
+- Context analysis to solve keyword overlapping. In order to do this, we need to change some of our analysis to intent based, so that the bot can know that whether a user ask a location or link to a webpage in  `where is adm?` and `where is exam papers?`. But there is a certain problem with this. Other than it's a bit more complicated, it also requires much more training, since the machine learning is less supervised. It's technologically feasible, but may need heavy manpower.
 
 ### More possible
 - Better interface for librarian. We should be able to create a good interface to maintain the tree, the messages, node connections and keywords.
 - Better interface for user. We should be able to make better design or as prefered.
 - Make the bot more humanlike. Until now the main focus is not to make the bot really look like a human. The focus is to give ease for user to ask questions. We should be able to make the interaction more like human in unimportant conversation like greetings, asking the weathers, etc.
 - Adding more synonyms to the keywords, i.e., make the classification work better.
+
+## Next Step
+
+If this project is continued, then
+
+### Using a more advanced NLP services
+
+We might want to use Dialogflow instead of wit.ai, to get better functionallity and also better support in developing our chatbot.
+
+#### Context Analysis & Natural Language
+
+Until now, we can very more or less classify four levels of chatbots.
+1. Button clicking
+2. Keyword matching
+3. Context analysis
+4. Natural interface
+
+Roughly speaking, wit.ai might only capable to support until context analysis (which required much manpower), and might not be able to support really natural interface (at least, not a robust one). But we should be able to support natural interface if we are using more advanced chatbot framework. 
+
+Sure, a bit of natural interface still needed to provide good UX, but not every chatbot really need natural interface, sincethe main purpose (at least in our case) is that to provide useful information, not chit chatting with the bot.
