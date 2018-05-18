@@ -64,20 +64,20 @@
 	color:#ffffff;
 }
 
-.inputField {
-	width:95%;
-	min-height:2em;
-	font-size: 120%;
-	padding:1em;
-	text-align:center;
-	float:center;
-	position:relative;
-	left:0.8em;
-	bottom:0.5em;
-	border: none;
-	border-radius:1em;
-	margin-top:1em;
-	max-width:95%;
-	margin-right:0%;
-	margin-bottom: 0px;
+#answer {
+	width: 90%;
+    min-height: 2em;
+    font-size: 120%;
+    padding: 1em;
+    text-align: center;
+    float: center;
+    position: relative;
+    left: 0.8em;
+    bottom: 0.5em;
+    border: none;
+    border-radius: 1em;
+    margin-top: 1em;
+    max-width: 95%;
+    margin-right: 0%;
+    margin-bottom: 0px;
 }
