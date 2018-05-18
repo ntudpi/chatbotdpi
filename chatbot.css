@@ -64,6 +64,8 @@
 
 .button:hover { 
     background-color: #a8a39a;
+    background-image: none;
+    box-shadow: none;
 }
 
 .headerChat {
