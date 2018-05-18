@@ -27,6 +27,8 @@ function doResponse(entities, numCall, directAccessDepth, initialState) {
   // initialState is the last state the bot responsed
   // ( we don't want to store intermediate states into the chatStack )
 
+  console.log(entities);
+
   // check which of the keyword best matches the input
   var maxVal=0.2; // ignore the result if the confidence level is below 0.2
   var maxInd=-1; // for easy checking
@@ -86,6 +88,19 @@ function doResponse(entities, numCall, directAccessDepth, initialState) {
   }
   if(maxInd == -1 && numCall==0) // if it's not the first call but no keyword match
   {
+    if(typeof entities['thanks'] != "undefined") // if there is greetings
+    {
+      addHistory("bot", "My pleasure");
+      curState = topConv;
+      botResponse();
+      return; 
+    }
+    else if(typeof entities['greetings'] != "undefined") // if there is greetings
+    {
+      addHistory("bot", "Hi, nice to meet you!<br>");
+      botResponse();
+      return; 
+    }
     var sorry = "Sorry I can't understand you, or it's beyond my scope &#9785;<br>Can you please restate your input in different way?<br>\
                 Or you can <a target='_blank' href='http://bit.ly/ntuaskalibrarian'>ask a librarian</a>."
     addHistory("bot", sorry); // let the bot say sorry, but no changes 
