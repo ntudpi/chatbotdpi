@@ -5,7 +5,7 @@ We created the possible conversation in a tree
 Here is a look of a section of the tree
 ![Here is a look of a section of the tree](https://ia601504.us.archive.org/2/items/ScreenShot20180517At3.17.40PM/Screen%20Shot%202018-05-17%20at%203.17.40%20PM.png)
 In the conventional chatbot that just use button, the user can only click the options to moving through the nodes of the tree.
-The implementation was quite straightforward.
+That implementation was quite straightforward.
 
 #### Modifying the tree
 Maintaining the tree is also not so diffifult. When one need to change to flow of the tree or the messages in a node, all they need to do is just to modify a CSV file, accessible via excel, and just execute a single line command through terminal.
@@ -87,16 +87,16 @@ So, the actual solution is not adding direct access keyword to all nodes. We jus
 So now, what we have is a tree, that some of the node has a direct access link, and some don't (just accessible from the parent). And it pretty much solve the problems.
 
 
-## Usolved problems
+## Unsolved problems
 
 #### Time consuming
-It takes time to develop the tree (to the NLP), and it takes time to train the keyword.
+It takes time to develop the tree (to the NLP), and it takes time to train the keyword. At the end, it is just typing less than 50 words for each keyword. The cost is actually when researching and listing the keywords. It may take about 10-20 minutes for each keyword, and in this case we have 33 keywords. So it may need hours for a small change.
 
 #### Not scalable
-As stated in the fourth problem, we can really grow the tree that much.
+As stated in the fourth problem, we can really grow the tree that much. Depending on the relatedness of the keywords (really different/similar), the ideal number of nodes might be around 10-50.
 
 #### Low flexibility
-Other than just changing the tree, implementing new functionallity is not really easy to do, and may need major changing of the chatbot.
+Other than just changing the tree, implementing new functionallity is not really easy to do, and may need major changing of the chatbot. It is caused because this chatbot platform is built for that specific purposes. So any changes will require dirty change in the code.
 
 #### Keyword overlapping
 This problem is in the wit.ai. The fact that we were using keyword classification method, is not really scalable. Having direct links to most of the node will cause us a really big problem if the tree is to big, since there will be overlapping of classification from different context. There might be a way to put and connect subtrees in a hierarchical way, but we need to let the user know how to navigate between those subtrees, and it's more like talking to different chatbot based on its context (maybe financial, academic, administrative, etc.)
@@ -118,4 +118,4 @@ If this chatbot is continued to be developed, there are some things that possibl
 - Better interface for librarian. We should be able to create a good interface to maintain the tree, the messages, node connections and keywords.
 - Better interface for user. We should be able to make better design or as prefered.
 - Make the bot more humanlike. Until now the main focus is not to make the bot really look like a human. The focus is to give ease for user to ask questions. We should be able to make the interaction more like human in unimportant conversation like greetings, asking the weathers, etc.
-- Adding more synonyms to the keywords.
+- Adding more synonyms to the keywords, i.e., make the classification work better.
