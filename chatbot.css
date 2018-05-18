@@ -18,9 +18,8 @@
 }
 
 .user {
-	background-color:#66b3ff;
+	background-color:#dcf8c6;
 	text-align:right;
-	color:#ffffff;
 	float:right;
 	clear:both;
 }
@@ -33,9 +32,9 @@
 }
 
 .history {
-	background-color:#e0e0e0;
+	background-color:#ece5dd;
 	overflow-y:auto;
-	height:600px;
+	height:40em;
 }
 
 .choices {
@@ -56,9 +55,24 @@
     border-radius:1em;
 }
 
+.headerChat {
+	text-align: left;
+	font-size: 200%;
+	padding:0.5em;
+	background-color: #075e54;
+	color:#ffffff;
+}
+
 .inputField {
-	width:100%;
+	width:95%;
 	min-height:2em;
+	font-size: 120%;
+	padding:1em;
 	text-align:center;
 	float:center;
+	position:relative;
+	bottom:4em;
+	left:0.8em;
+	border: none;
+	border-radius:1em;
 }
