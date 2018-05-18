@@ -86,7 +86,8 @@ function doResponse(entities, numCall, directAccessDepth, initialState) {
   }
   if(maxInd == -1 && numCall==0) // if it's not the first call but no keyword match
   {
-    var sorry = "Sorry I can't understand you &#9785;<br>Can you please restate your input in different way?"
+    var sorry = "Sorry I can't understand you, or it's beyond my scope &#9785;<br>Can you please restate your input in different way?<br>\
+                Or you can <a target='_blank' href='http://bit.ly/ntuaskalibrarian'>ask a librarian</a>."
     addHistory("bot", sorry); // let the bot say sorry, but no changes 
     return; // (no button clearing, no state change, wait for next input)
   }
