@@ -8,7 +8,7 @@ function getResponse (textInput, callback) {
       url: 'https://api.wit.ai/message',
       data: {
         'q': textInput,
-        'access_token' : '67453HLLYIEHMNZPGKIVK6TOLP3GPGF4'  // token to https://wit.ai/kevinwinatamichael/chatbotdpi/entities
+        'access_token' : 'I43BTVDXSJDIUJ6X5RSQKHVOPOPIPPQU'  // token to wit.ai
       },
       dataType: 'jsonp',
       method: 'GET',
