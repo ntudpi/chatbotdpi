@@ -25,6 +25,7 @@
 }
 
 .mycontainer {
+	background-color:#ece5dd;
 	float: center;
 	width: 100%;
 	max-width:40em;
@@ -71,8 +72,9 @@
 	text-align:center;
 	float:center;
 	position:relative;
-	bottom:4em;
 	left:0.8em;
+	bottom:0.5em;
 	border: none;
 	border-radius:1em;
+	margin-top:1em;
 }
