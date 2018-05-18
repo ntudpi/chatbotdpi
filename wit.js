@@ -13,7 +13,7 @@ function getResponse (textInput, callback) {
       dataType: 'jsonp',
       method: 'GET',
       success:function(response) {
-                callback(response.entities, 0, curState); // call the callback function after the AJAX response
+                callback(response.entities, 0, 0, curState); // call the callback function after the AJAX response
               }
       // we can't directly manipulate the response there, since the request is asynchronous
       // https://stackoverflow.com/questions/14220321/how-do-i-return-the-response-from-an-asynchronous-call
@@ -21,7 +21,7 @@ function getResponse (textInput, callback) {
   });
 };
 
-function doResponse(entities, numCall, initialState) {
+function doResponse(entities, numCall, directAccessDepth, initialState) {
   // handle the response based on the classified result from wit.ai
   // entities is the result, numCall indicates the level of the recursion of this function
   // initialState is the last state the bot responsed
@@ -69,11 +69,11 @@ function doResponse(entities, numCall, initialState) {
       }
     }
   }
-  if(bestIndDirect!=-1) // try the direct access first before the usual chat (following the tree)
-  {
+  if(bestIndDirect!=-1 && directAccessDepth==0) // try the direct access first before the usual chat (following the tree)
+  { // jump if it's the first try to directAccessOnly
     chatStack.push(initialState); // put the latest state into history before jumping
     curState = directAccessStates[bestIndDirect][0]; // go to next state
-    botResponse(); // continue as normal
+    doResponse(entities, numCall+1, directAccessDepth+1, initialState); // continue as normal
     return;
   }
   // end of direct access implementation
@@ -91,7 +91,7 @@ function doResponse(entities, numCall, initialState) {
     return; // (no button clearing, no state change, wait for next input)
   }
   curState = curState.getNextStates[maxInd];
-  doResponse(entities, numCall+1, initialState);
+  doResponse(entities, numCall+1, directAccessDepth, initialState);
   return;
 }
 
