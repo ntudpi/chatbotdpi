@@ -102,4 +102,3 @@ As stated in the fourth problem, we can really grow the tree that much.
 
 #### Low flexibility
 Other than just changing the tree, implementing new functionallity is not really easy to do, and may need major changing of the chatbot.
-------
