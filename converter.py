@@ -31,6 +31,8 @@ for i in range(len(state)):
 	if(directs[i]!="null"): # append the [state, keyword] list pair
 		jscommand += "directAccessStates.push([" + state[i] + ",'" + directs[i] + "']);\n"
 
-text_file = open("output.js", "w")
+
+jscommand += "curState = topConv; botResponse();"
+text_file = open("chatbot.js", "a+")
 text_file.write(jscommand)
 text_file.close()
