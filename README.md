@@ -1,19 +1,19 @@
 # NTU DPI ChatBot Report
  
 ## Without NLP (Natural Language Processing)
-We created the possible conversation in a tree
-Here is a look of a section of the tree
+We created the possible conversation in a tree  
+Here is a look of a section of the tree  
 ![Here is a look of a section of the tree](https://ia601504.us.archive.org/2/items/ScreenShot20180517At3.17.40PM/Screen%20Shot%202018-05-17%20at%203.17.40%20PM.png)
-In the conventional chatbot that just use button, the user can only click the options to moving through the nodes of the tree.
-That implementation was quite straightforward.
+In the conventional chatbot that just use button, the user can only click the options to moving through the nodes of the tree.  
+That implementation was quite straightforward.  
 
 #### Modifying the tree
-Maintaining the tree is also not so diffifult. When one need to change to flow of the tree or the messages in a node, all they need to do is just to modify a CSV file, accessible via excel, and just execute a single line command through terminal.
+Maintaining the tree is also not so diffifult. When one need to change to flow of the tree or the messages in a node, all they need to do is just to modify a CSV file, accessible via excel, and just execute a single line command through terminal.  
 > **Possible Improvement:**
-> We should be able to make the interface to modify the tree better from the user perspective. But currently it is not our focus.
+> We should be able to make the interface to modify the tree better from the user perspective. But currently it is not our focus.  
 -------
 ## Augmenting NLP -  wit.ai
-In order to augment NLP to the chatbot (to let user input texts instead of just clicking buttons), we use the NLP service from wit.ai to classify the texts using keyword identification method. Currently we use https://wit.ai/kevinwinatamichael/chatbotdpi/entities app to classify the text.
+In order to augment NLP to the chatbot (to let user input texts instead of just clicking buttons), we use the NLP service from wit.ai to classify the texts using keyword identification method. Currently we use https://wit.ai/kevinwinatamichael/chatbotdpi/entities app to classify the text.  
 
 ### Why wit.ai?
 #### Free
@@ -31,17 +31,17 @@ We can just classify the texts using keyword classification method. It's simple,
 ## Our steps in NLP
 
 #### The idea
-The idea here, is that for every next node (possible next response from the chatbot) in our current node (current state of conversation), we assign a corresponding keyword.
+The idea here, is that for every next node (possible next response from the chatbot) in our current node (current state of conversation), we assign a corresponding keyword.  
 So the we will move to the next node by the best matching keyword (which is easily done by the wit.ai).
-Consider this example,
-The conversation is currently in the node `a`, which has three possible next nodes, named `b`, `c`, and `d`. The next node will be either from three of them, depending on the keywords attached to them. We might go to the node `b`, if the user said something about, let say `fish`. And we'll go to the node `c`, if the user say `pizza`, and `d` if the user say `bread`.
+Consider this example,  
+The conversation is currently in the node `a`, which has three possible next nodes, named `b`, `c`, and `d`. The next node will be either from three of them, depending on the keywords attached to them. We might go to the node `b`, if the user said something about, let say `fish`. And we'll go to the node `c`, if the user say `pizza`, and `d` if the user say `bread`.  
 > A message, in order to be classified as the keyword `fish`, does not have to be directly related to the word 'fish'. It could be anything. We can modify it by our self. For example, I might want to teach the wit.ai NLP, to classify the word 'mouse', as `fish`. And it's totally okay in wit.ai, though it's not a good practice.
 
 
 #### First problem
-Let us give an example of how the above idea might not work as desired.
-Consider this scenario, the user asked the library opening time. The bot is intended to ask `At which period? Is it vacation, or semester, or extended?`, and then `When is it? Weekdays, Saturday, or Sunday?`.
-The user might answer it by `At the extended period` and then after the bot asked the day, `Sunday, please`, as expected by the bot.
+Let us give an example of how the above idea might not work as desired.  
+Consider this scenario, the user asked the library opening time. The bot is intended to ask `At which period? Is it vacation, or semester, or extended?`, and then `When is it? Weekdays, Saturday, or Sunday?`.  
+The user might answer it by `At the extended period` and then after the bot asked the day, `Sunday, please`, as expected by the bot.  
 But how if the user directly said `At an extended period Sunday`. Remember that the classification is not our major problem now. So the bot will successfully identify which period it is, `extended period`. But the bot, will once again, asked `When is it? Weekdays, Saturday, or Sunday?`, and the user will be mad.
 
 **Solution**
@@ -51,36 +51,36 @@ Fortunately it's not a big problem, we can solve this by allowing the bot to tak
 Consider this scenario, at the top of the conversation (before the user told the bot that she want to ask about opening hours), the user asked `What's the library opening hour this Monday?`. The bot, at the top conversation, might successfuly classify the first keyword to `opening hours`, and then, go to that node, and it supposed to ask `At which period? Is it vacation, or semester, or extended?`. By using our solution in the first solution, the bot should be able to continue going down through the node. But unfortunately, at this example, the user provided the wrong information, the `Sunday` won't be extracted since it's not in the list of possible keywords. So the bot asks `At which period? Is it vacation, or semester, or extended?`. The user, without knowing that the information has not been extracted properly, will answer, `At the vacation`, for example. But then, after that, the bot will asks `When is it? Weekdays, Saturday, or Sunday?`, and the user will be mad.
 
 **Solution**
-Fortunately, once again, we have the solution for this problem.
-So the initial condition is that
-`Opening hours`->`semseter`, `vacation`, `extended`
-`semester`->`weekdaySemseter`,`saturdaySemester`,`sundaySemester`
-`vacation`->`weekdayVacation`,`saturdayVacation`,`sundayVacation`
-`extended`->`weekdayExtended`,`saturdayExtended`,`sundayExtended`
-*'->' indicates the keywords for next nodes.*
-To solve the problem, we can append it so to be
-`Opening hours`->`semseter`, `vacation`, `extended`,`generalWeekday`,`generalSaturday`,`generalSunday`
-`semester`->`weekdaySemseter`,`saturdaySemester`,`sundaySemester`
-`vacation`->`weekdayVacation`,`saturdayVacation`,`sundayVacation`
-`extended`->`weekdayExtended`,`saturdayExtended`,`sundayExtended`
-`generalWeekday`->`weekdaySemseter`,`weekdayVacation`,`weekdayExtended`
-`generalSaturday`->`saturdaySemester`,`saturdayVacation`,`saturdayExtended`
-`generalSunday`->`sundaySemester`,`sundayVacation`,`sundayExtended`
+Fortunately, once again, we have the solution for this problem.  
+So the initial condition is that  
+`Opening hours`->`semseter`, `vacation`, `extended`  
+`semester`->`weekdaySemseter`,`saturdaySemester`,`sundaySemester`  
+`vacation`->`weekdayVacation`,`saturdayVacation`,`sundayVacation`  
+`extended`->`weekdayExtended`,`saturdayExtended`,`sundayExtended`  
+*'->' indicates the keywords for next nodes.*  
+To solve the problem, we can append it so to be  
+`Opening hours`->`semseter`, `vacation`, `extended`,`generalWeekday`,`generalSaturday`,`generalSunday`  
+`semester`->`weekdaySemseter`,`saturdaySemester`,`sundaySemester`  
+`vacation`->`weekdayVacation`,`saturdayVacation`,`sundayVacation`  
+`extended`->`weekdayExtended`,`saturdayExtended`,`sundayExtended`  
+`generalWeekday`->`weekdaySemseter`,`weekdayVacation`,`weekdayExtended`  
+`generalSaturday`->`saturdaySemester`,`saturdayVacation`,`saturdayExtended`  
+`generalSunday`->`sundaySemester`,`sundayVacation`,`sundayExtended`  
 And now as you can see, the bot will be able to extract the information from `What's the library opening hour this Monday?`, to move down to the `Opening hours` node, and them to the `generalSunday` node. Then asks `At which period? Is it vacation, or semester, or extended?`, the user answered `vacation`, and both of them is happy.
 
 #### Third Problem
-Sometimes, the user might not always want to complete the conversation, and maybe directly jump to a node within a tree.
-`user`: when does the library open in Sunday?
-`bot`: at which period?
-`user`: how do I borrow a book?
-Using the solution from the second solution, the bot will not be able to detect any keyword to `borrow book`, since it's not on the list.
+Sometimes, the user might not always want to complete the conversation, and maybe directly jump to a node within a tree.  
+`user`: when does the library open in Sunday?  
+`bot`: at which period?  
+`user`: how do I borrow a book?  
+Using the solution from the second solution, the bot will not be able to detect any keyword to `borrow book`, since it's not on the list.  
 
 **Solution**
-Fortunately, third time, we have solved this problem. The solution is that we simply add one more column to the CSV file, to add the keyword to a node so that the user can directly jumps to that node using that keyword.
+Fortunately, third time, we have solved this problem. The solution is that we simply add one more column to the CSV file, to add the keyword to a node so that the user can directly jumps to that node using that keyword.  
+  
+So, now jumping to a node `sundaySemester`, could be achieved from two different ways, by following the tree in the path `Opening hours` -> `Sunday` -> `semester`, or directly accessing keyword associated with it, `opening hours sunday semester`, for example.  
 
-So, now jumping to a node `sundaySemester`, could be achieved from two different ways, by following the tree in the path `Opening hours` -> `Sunday` -> `semester`, or directly accessing keyword associated with it, `opening hours sunday semester`, for example.
-
-The former one is preferable, since we're now saving the usage of keyword. Training a bot to recognize keyword is costly, and having `opening hours sunday semester` will have a lot of overlap with keyword `sunday`, or `opening hours`, which will confuse the bot.
+The former one is preferable, since we're now saving the usage of keyword. Training a bot to recognize keyword is costly, and having `opening hours sunday semester` will have a lot of overlap with keyword `sunday`, or `opening hours`, which will confuse the bot.  
 
 So, the actual solution is not adding direct access keyword to all nodes. We just adding them to the node that might be accessed without providing any keyword of its parent node. For example, `borrow book` is a child of the node `requesting material`, but to ask `how do I borrow a book?` does not require the user to say anything about `requesting material`. But in `opening hours in vacation sunday?`, have all the keywords of its parent node.
 
