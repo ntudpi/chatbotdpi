@@ -86,15 +86,10 @@ So, the actual solution is not adding direct access keyword to all nodes. We jus
 
 So now, what we have is a tree, that some of the node has a direct access link, and some don't (just accessible from the parent). And it pretty much solve the problems.
 
-#### Fourth problem
-After we developed the system of how the tree works. The problem is internally in wit.ai. The fact that we were using keyword classification method, is not really scalable. Having direct links to most of the node will cause us a really big problem if the tree is to big, since there will be overlapping of classification from different context. There might be a way to put and connect subtrees in a hierarchical way, but we need to let the user know how to navigate between those subtrees, and it's more like talking to different chatbot based on its context (maybe financial, academic, administrative, etc.)
-
-**Solution**
-But there is a way to tackle this problem. Keep the chatbot simple by not growing the tree to be to big. Especially not to many direct access keyword node. And as our library chatbot is intended to that purpose, we think that it should not be a big problem.
 
 ## Usolved problems
 
-#### Quite time consuming
+#### Time consuming
 It takes time to develop the tree (to the NLP), and it takes time to train the keyword.
 
 #### Not scalable
@@ -102,3 +97,25 @@ As stated in the fourth problem, we can really grow the tree that much.
 
 #### Low flexibility
 Other than just changing the tree, implementing new functionallity is not really easy to do, and may need major changing of the chatbot.
+
+#### Keyword overlapping
+This problem is in the wit.ai. The fact that we were using keyword classification method, is not really scalable. Having direct links to most of the node will cause us a really big problem if the tree is to big, since there will be overlapping of classification from different context. There might be a way to put and connect subtrees in a hierarchical way, but we need to let the user know how to navigate between those subtrees, and it's more like talking to different chatbot based on its context (maybe financial, academic, administrative, etc.)
+
+One strategy to handle is to keep the chatbot simple by not growing the tree to be to big. Especially not to many direct access keyword node. But it's not that easy. Consider the following example:
+
+User could both asks `where is lee wee nam?` and `where is exam paper?`. From the `where is lee wee nam?` point of view, we have to put `where is` as a keyword to classify it as expression to ask a location of a library. Therefore, when the user asks `where is exam paper?`, it could direct it to the library locations instead of exam paper.
+
+Surely it could be resolved, but the solution may not be simple. It requires complex context analysis, which is not feasible at the given time resources.
+
+## Possible Improvements
+
+If this chatbot is continued to be developed, there are some things that possibly could be improved and things that are less likely doable.
+
+### Less possible
+- Faster training. It's the base problem of using machine learning in NLP, we need a lot of data to train it well.
+- Scalability. Given the same fundamental way of creating the bot. There is small hope that we can grow the bot to handle lots of things
+
+### More possible
+- Better interface for librarian. We should be able to create a good interface to maintain the tree, the messages, node connections and keywords.
+- Better interface for user. We should be able to make better design or as prefered.
+- Make the bot more humanlike. Until now the main focus is not to make the bot really look like a human. The focus is to give ease for user to ask questions. We should be able to make the interaction more like human in unimportant conversation like greetings, asking the weathers, etc.
