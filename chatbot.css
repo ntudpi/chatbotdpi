@@ -29,7 +29,6 @@
 	float: center;
 	width: 100%;
 	max-width:40em;
-	padding: 1em;
     margin: 0;
 }
 
@@ -43,6 +42,7 @@
 	background-color:#66b3ff;
 	text-align:right;
 	min-height:3em;
+	display: none;
 }
 
 .button {
@@ -60,6 +60,5 @@
 	width:100%;
 	min-height:2em;
 	text-align:center;
-	font-size:120%;
 	float:center;
 }
