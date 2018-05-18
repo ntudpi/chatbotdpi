@@ -1,5 +1,7 @@
 # NTU DPI ChatBot Report
- 
+
+> ** Need to delete the state declaration and linking in the chatbot.js before running converter.py, since it will just append the new declaration there, and will make the script crash. **
+
 ## Without NLP (Natural Language Processing)
 We created the possible conversation in a tree  
 Here is a look of a section of the tree  
