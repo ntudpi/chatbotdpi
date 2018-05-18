@@ -38,22 +38,30 @@
 	height:40em;
 }
 
-.choices {
-	background-color:#66b3ff;
-	text-align:right;
+#choices {
+	text-align:center;
 	min-height:3em;
-	display: none;
+	padding-bottom:1em
 }
 
 .button {
-    background-color: #66b3ff;
+    background-color: #c4bdb4;
     border: none;
-    color: #000000;
+    color: #ffffff;
     padding: 0.5em 1em;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    border-radius:1em;
+    border-radius:0.5em;
+    margin: 0.2em;
+    border: none;
+    font-size: 120%;
+    -webkit-transition-duration: 0.3s; /* Safari */
+    transition-duration: 0.3s;
+}
+
+.button:hover { 
+    background-color: #a8a39a;
 }
 
 .headerChat {
