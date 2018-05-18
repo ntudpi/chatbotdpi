@@ -105,8 +105,6 @@ One strategy to handle is to keep the chatbot simple by not growing the tree to 
 
 User could both asks `where is lee wee nam?` and `where is exam paper?`. From the `where is lee wee nam?` point of view, we have to put `where is` as a keyword to classify it as expression to ask a location of a library. Therefore, when the user asks `where is exam paper?`, it could direct it to the library locations instead of exam paper.
 
-Surely it could be resolved, but the solution may not be simple. It requires complex context analysis, which is not feasible at the given time resources.
-
 ## Possible Improvements
 
 If this chatbot is continued to be developed, there are some things that possibly could be improved and things that are less likely doable.
@@ -114,8 +112,10 @@ If this chatbot is continued to be developed, there are some things that possibl
 ### Less possible
 - Faster training. It's the base problem of using machine learning in NLP, we need a lot of data to train it well.
 - Scalability. Given the same fundamental way of creating the bot. There is small hope that we can grow the bot to handle lots of things
+- Context analysis to solve keyword overlapping. It's complicated.
 
 ### More possible
 - Better interface for librarian. We should be able to create a good interface to maintain the tree, the messages, node connections and keywords.
 - Better interface for user. We should be able to make better design or as prefered.
 - Make the bot more humanlike. Until now the main focus is not to make the bot really look like a human. The focus is to give ease for user to ask questions. We should be able to make the interaction more like human in unimportant conversation like greetings, asking the weathers, etc.
+- Adding more synonyms to the keywords.
