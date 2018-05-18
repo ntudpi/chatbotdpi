@@ -58,6 +58,8 @@
     font-size: 120%;
     -webkit-transition-duration: 0.3s; /* Safari */
     transition-duration: 0.3s;
+    background-image: none;
+    box-shadow: none;
 }
 
 .button:hover { 
