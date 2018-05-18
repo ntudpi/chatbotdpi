@@ -39,9 +39,10 @@
 }
 
 #choices {
-	text-align:center;
-	min-height:3em;
-	padding-bottom:1em
+	position: relative;
+    text-align: center;
+    top: -1em;
+    min-height: 3em;
 }
 
 .button {
