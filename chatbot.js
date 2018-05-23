@@ -58,10 +58,10 @@ function makeChoices(inp) {
     choiceHTML += '<button class="button" onclick="userResponse('+i+')">' + inp[i] + '</button>';
   }
   
-  if(chatStack.length!==0) // if the history is not empty, then allow going back
-  {
-    choiceHTML += '<button class="button" onclick=backChat()>Back</button>';
-  }
+  // if(chatStack.length!==0) // if the history is not empty, then allow going back
+  // {
+  //   choiceHTML += '<button class="button" onclick=backChat()>Back</button>';
+  // }
 
   document.getElementById("choices").innerHTML = choiceHTML; // put the buttons into the div
   
@@ -76,14 +76,16 @@ function userResponse(choiceIndex) {
   document.getElementById("choices").innerHTML = ""; // clear the buttons
 
   chatStack.push(curState); // add the previous state into the history before changing
-  
-  // always function
-  eval(curState.always);
 
   // functions
   eval(curState.functions[choiceIndex]);
 
-  window.setTimeout(botResponse,500); // wait for a while, for better UX
+  // always function
+  eval(curState.always);
+
+  setTimeout(botResponse, 500); // wait for a while, for better UX
+
+  
 }
 
 
@@ -248,3 +250,4 @@ jQuery( document ).ready(function( $ ) { // to tackle wordpress Jquery conflict
   });
 });
 
+var score=0;
