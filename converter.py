@@ -3,6 +3,7 @@ state = []
 msg = []
 choices = []
 functions = []
+always = []
 
 with open('chart2.csv', newline='') as csvfile:
 	reader = csv.DictReader(csvfile)
@@ -12,11 +13,12 @@ with open('chart2.csv', newline='') as csvfile:
 		msg.append(row['msg'])
 		choices.append(row['choicesButton'])
 		functions.append(row['nextFunc'])
+		always.append(row['always'])
 
 jscommand="" # store the string of command
 
 for i in range(len(state)): # constructing the objects
-	jscommand += "const "+state[i]+" = new State('"+msg[i]+"',"+choices[i]+","+functions[i]+");\n"
+	jscommand += "const "+state[i]+" = new State('"+msg[i]+"',"+choices[i]+","+functions[i]+",'"+always[i]+"');\n"
 
 jscommand += "curState = topConv; botResponse();"
 

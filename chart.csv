@@ -1,2 +1,12 @@
-state,msg,choicesButton,nextFunc
-topConv,What is your name?,"['1','2']","['console.log(\'1\');', 'console.log(\'2\');']"
+state,msg,choicesButton,nextFunc,always
+topConv,Let\'s play a quiz,['Ok'],['curState = s1; var score=0;'],
+s1,Rome is the capital of which country?,"['Czech','Italy','Cuba','China']","['score += 0;','score+=1','score+=0','score+=1']",curState = s2;
+s2,,,,
+s3,,,,
+s4,,,,
+s5,,,,
+s6,,,,
+s7,,,,
+s8,,,,
+s9,,,,
+s10,,,,
