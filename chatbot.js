@@ -2,20 +2,20 @@ class State {
   // the class that stores the story in chatbot
 
   constructor(response, choices, functions){
-    this.response = response;
-    this.choices = choices;
-    this.functions = functions;
+    this.myresponse = response;
+    this.mychoices = choices;
+    this.myfunctions = functions;
   }
 
   // getters
   get response() {
-    return this.response;
+    return this.myresponse;
   }
   get choices() {
-    return this.choices;
+    return this.mychoices;
   }
   get functions() {
-    return this.functions;
+    return this.myfunctions;
   }
 
   set response(inp){};
@@ -73,7 +73,7 @@ function userResponse(choiceIndex) {
   chatStack.push(curState); // add the previous state into the history before changing
   
   // function to be implemented
-  eval(curState.functions[i]);
+  eval(curState.functions[choiceIndex]);
 
   window.setTimeout(botResponse,500); // wait for a while, for better UX
 }
