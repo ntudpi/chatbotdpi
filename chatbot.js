@@ -26,14 +26,14 @@ var chatStack = [];
 function botResponse() {
   // put the bot response in history and create the choices in current state
 
-  addHistory("bot", curState.getResponse); //put to history
+  addHistory("bot", curState.response); //put to history
 
   if(curState===topConv) //if it's top of conversation, then clear the history
   {
     chatStack = [];
   }
 
-  makeChoices(curState.getChoices); // put the choices button
+  makeChoices(curState.choices); // put the choices button
 
   return;
 }
@@ -63,13 +63,13 @@ function makeChoices(inp) {
 function userResponse(choiceIndex) {
   // things to do when user click the appropriate button
 
-  addHistory("user", curState.getChoices[choiceIndex]); // put user response to the history
+  addHistory("user", curState.choices[choiceIndex]); // put user response to the history
   document.getElementById("choices").innerHTML = ""; // clear the buttons
 
   chatStack.push(curState); // add the previous state into the history before changing
   
   // function to be implemented
-  curState.getFunctions[i]();
+  eval(curState.functions[i]);
 
   window.setTimeout(botResponse,500); // wait for a while, for better UX
 }
