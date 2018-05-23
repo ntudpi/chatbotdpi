@@ -17,6 +17,10 @@ class State {
   get functions() {
     return this.functions;
   }
+
+  set response(inp){};
+  set choices(inp){};
+  set functions(inp){};
 }
 
 // store the chat history to allow user to go 'back'
