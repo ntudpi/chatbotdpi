@@ -1,2 +1,2 @@
 state,msg,choicesButton,nextFunc
-s1,What is your name?,"['1','2']","['console.log(\'1\');', 'console.log(\'2\');']"
+topConv,What is your name?,"['1','2']","['console.log(\'1\');', 'console.log(\'2\');']"
