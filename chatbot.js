@@ -1,10 +1,11 @@
 class State {
   // the class that stores the story in chatbot
 
-  constructor(response, choices, functions){
+  constructor(response, choices, functions, always){
     this.myresponse = response;
     this.mychoices = choices;
     this.myfunctions = functions;
+    this.always = always;
   }
 
   // getters
@@ -17,10 +18,14 @@ class State {
   get functions() {
     return this.myfunctions;
   }
+  get always() {
+    return this.myalways;
+  }
 
   set response(inp){};
   set choices(inp){};
   set functions(inp){};
+  set always(inp){};
 }
 
 // store the chat history to allow user to go 'back'
@@ -72,7 +77,10 @@ function userResponse(choiceIndex) {
 
   chatStack.push(curState); // add the previous state into the history before changing
   
-  // function to be implemented
+  // always function
+  eval(curState.always);
+
+  // functions
   eval(curState.functions[choiceIndex]);
 
   window.setTimeout(botResponse,500); // wait for a while, for better UX
