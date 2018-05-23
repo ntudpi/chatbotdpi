@@ -1,46 +1,21 @@
 class State {
   // the class that stores the story in chatbot
 
-  constructor(response, choices, nextStates, nextStrings, directAccess){
+  constructor(response, choices, functions){
     this.response = response;
     this.choices = choices;
-    this.nextStates = nextStates;
-    this.nextStrings = nextStrings;
-    this.directAccess = directAccess;
+    this.functions = functions;
   }
 
   // getters
-  get getResponse() {
+  get response() {
     return this.response;
   }
-  get getChoices() {
+  get choices() {
     return this.choices;
   }
-  get getNextStates() {
-    return this.nextStates;
-  }
-  get getNextStrings() {
-    return this.nextStrings;
-  }
-  get getDirectAccess() {
-    return this.directAccess;
-  }
-
-  // setters
-  set setChoices(inputChoices) {
-    this.choices = inputChoices;
-  }
-  set setNextStates(inputNextStates) {
-    this.nextStates = inputNextStates;
-  }
-  set setResponse(inputResponse) {
-    this.response = inputResponse;
-  }
-  set setNextStrings(inputNextStrings) {
-    this.nextStrings = inputNextStrings;
-  }
-  set getDirectAccess(inputDirectAccess) {
-    this.directAccess = inputDirectAccess;
+  get functions() {
+    return this.functions;
   }
 }
 
