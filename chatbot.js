@@ -142,7 +142,7 @@ function getResponse (textInput, callback) {
       url: 'https://api.wit.ai/message',
       data: {
         'q': textInput,
-        'access_token' : 'I43BTVDXSJDIUJ6X5RSQKHVOPOPIPPQU'  // token to wit.ai
+        'access_token' : 'O6YTBF2NELCZF3WMNWC663THSPBFSZRP'  // token to wit.ai
       },
       dataType: 'jsonp',
       method: 'GET',
