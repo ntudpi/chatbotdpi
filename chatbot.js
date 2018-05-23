@@ -5,7 +5,7 @@ class State {
     this.myresponse = response;
     this.mychoices = choices;
     this.myfunctions = functions;
-    this.always = always;
+    this.myalways = always;
   }
 
   // getters
