@@ -155,13 +155,27 @@ function getResponse (textInput, callback) {
   });
 };
 
-function doResponse(entities, numCall, directAccessDepth, initialState) {
+function doResponse(inputEntities, numCall, directAccessDepth, initialState) {
   // handle the response based on the classified result from wit.ai
   // entities is the result, numCall indicates the level of the recursion of this function
   // initialState is the last state the bot responsed
   // ( we don't want to store intermediate states into the chatStack )
 
+  console.log(inputEntities);
+  var entities = inputEntities;
+
+  // Processing entities: connect intent with keyword
+  if(typeof entities['intent'] != "undefined")
+  {
+    for(var i=0; i<entities['intent'].length; i++)
+    {
+      var value = entities['intent'][i]["value"];
+      var confidence = entities['intent'][i]["confidence"];
+      entities[value] = [{"value":value, "confidence":confidence}]
+    }
+  }
   console.log(entities);
+  // done processing intent
 
   // check which of the keyword best matches the input
   var maxVal=0.2; // ignore the result if the confidence level is below 0.2
